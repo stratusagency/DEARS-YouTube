@@ -1,5 +1,5 @@
 {
-  "name": "dears-youtube",
+  "name": "dears",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -15,8 +15,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
-    "build": "electron-packager ."
+    "build": "electron-packager .",
+    "dmg": "electron-installer-dmg ./dears-darwin-x64/dears.app DEARS --icon=./assets/icon.icns --title=DEARS --background=./assets/background.png"
   },
-  "author": "Corentin de Maupeou",
+  "author": "Corentin de Maupeou d'Ableiges de Monbail",
   "license": "ISC"
 }

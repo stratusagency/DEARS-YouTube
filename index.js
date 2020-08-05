@@ -1,7 +1,6 @@
-const { app, BrowserWindow, clipboard } = require('electron')
+const { app, BrowserWindow } = require('electron')
 
 const fs = require('fs')
-const ytdl = require('ytdl-core')
 
 function init () {
     const width = 750
@@ -16,18 +15,10 @@ function init () {
             nodeIntegration: true
         }
     })
-
-    /*
-    const url = clipboard.readText('clipboard')
-
-    if (url.includes('youtube.com')) {
-        ytdl(url).pipe(fs.createWriteStream(`${app.getPath('downloads')}/${new Date().getTime()}.mp4`))
-    } else {
-        app.quit()
-    }
-    */
     
     window.loadFile('./index.html')
+
+    fs.writeFileSync(`${__dirname}/directory.txt`, app.getPath('downloads'))
 }
 
 app.whenReady().then(init)

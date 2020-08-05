@@ -21,7 +21,8 @@ for (let element of document.getElementsByClassName('submit')) {
             status.innerHTML = 'Loading...'
            
             const filename = `${new Date().getTime()}.mp4`
-            const path = `/Users/corentin/Downloads/${filename}`
+            const directory = fs.readFileSync(`${__dirname}/directory.txt`)
+            const path = `${directory}/${filename}`
 
             const video = youtubedl(url, ['--format=18'], { cwd: __dirname })
 
