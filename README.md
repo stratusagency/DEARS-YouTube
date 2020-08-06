@@ -1,7 +1,7 @@
 # DEARS - YouTube
 ## Each videos is downloaded in your download files.
 
-![image](https://cdn.discordapp.com/attachments/573915112440594432/740487545267421275/Capture_decran_2020-08-05_a_09.11.03.png)
+![image](https://cdn.discordapp.com/attachments/573915112440594432/740867347782565929/Capture_decran_2020-08-06_a_11.40.50.png)
 
 This software is a YouTube downloader using [*youtube-dl*](https://github.com/ytdl-org/youtube-dl).
 Copy in your clipboard the YouTube URL, launch the application and download it.
