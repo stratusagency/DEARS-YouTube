@@ -2,9 +2,9 @@ const { app, BrowserWindow } = require('electron')
 
 const fs = require('fs')
 
-function init () {
-    const width = 750
-    const heigth = 500
+async function init () {
+    const width = 850
+    const heigth = 550
 
     const window = new BrowserWindow({
         width: width,
