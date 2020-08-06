@@ -8,7 +8,7 @@ Try [here](https://mega.nz/file/oB5kzKCY#1-RGgrXnIikEn8vzvl2WW-J20vQ9Ei2XATIQqmD
 This software is a YouTube downloader using [*youtube-dl*](https://github.com/ytdl-org/youtube-dl).
 Copy in your clipboard the YouTube URL, launch the application and download it.
 
-# How it works
+# How to build it
 
 Run it with *electron-packager* (npm run build)
 
