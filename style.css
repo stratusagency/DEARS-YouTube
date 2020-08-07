@@ -46,6 +46,8 @@ span {
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
+
+    width: 100%;
 }
 
 .infos input {
@@ -90,4 +92,34 @@ span {
 
 #informations img {
     margin: 10px;
+}
+
+#suggestions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    margin: 25px 0;
+}
+
+#suggestions div {
+    transition: .25s;
+
+    transform: scale(.5);
+
+    max-width: 125px;
+}
+
+#suggestions div p, #suggestions div span {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+#suggestions div:hover {
+    transition: .25s;
+
+    cursor: pointer;
+    background: #f0f0f0;
 }

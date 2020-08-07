@@ -1,8 +1,13 @@
 async function init () {
     const { clipboard } = require('electron')
+    
     const url = document.getElementById('url')
 
     url.value = clipboard.readText('clipboard')
+
+    for (let i = 0; i < 3; i++) {
+        addRandomVideo(url)
+    }
 }
 
 init()
@@ -14,11 +19,13 @@ for (let element of document.getElementsByClassName('submit')) {
         const fs = require('fs')
         const youtubedl = require('youtube-dl')
 
+        const suggestions = document.getElementById('suggestions')
         const status = document.getElementById('status')
         const url = document.getElementById('url').value
 
         if (url.includes('youtube.com')) {
             status.innerHTML = 'Loading...'
+            suggestions.remove()
 
             // Download
            
@@ -28,7 +35,7 @@ for (let element of document.getElementsByClassName('submit')) {
 
             const video = youtubedl(url, ['--format=18'], { cwd: __dirname })
 
-            video.on('info', async (e) => {
+            video.on('info', async () => {
                 status.innerHTML = 'Downloading...'
 
                 const div = document.getElementById('informations')
@@ -64,4 +71,45 @@ for (let element of document.getElementsByClassName('submit')) {
             status.innerHTML = 'Invalid address'
         }
     }
+}
+
+function addRandomVideo (url) {
+    const youtube = require('youtube-random-video')
+
+    youtube.getRandomVid('AIzaSyA2g8RfZ0c0sTRCzpydaw04u4OmhYVTsuw', (err, data) => {
+        const videoURL = `https://www.youtube.com/watch?v=${data.id.videoId}`
+        const videoTitle = data.snippet.title
+        const videoAuthor = data.snippet.channelTitle
+
+        const thumbnailURL = data.snippet.thumbnails.default.url
+        const thumbnailWidth = data.snippet.thumbnails.default.width
+        const thumbnailHeight = data.snippet.thumbnails.default.height
+
+        const suggestions = document.getElementById('suggestions')
+
+        const div = document.createElement('div')
+
+        const background = document.createElement('img')
+
+        const title = document.createElement('p')
+        const author = document.createElement('span')
+
+        div.onclick = () => { 
+            url.value = videoURL
+            suggestions.remove()
+        }
+
+        background.src = thumbnailURL
+        background.width = thumbnailWidth
+        background.height = thumbnailHeight
+
+        title.innerHTML = videoTitle
+        author.innerHTML = videoAuthor
+
+        div.appendChild(background)
+        div.appendChild(title)
+        div.appendChild(author)
+
+        suggestions.appendChild(div)
+    })
 }
