@@ -36,6 +36,13 @@ span {
     margin: 2.5px 0;
 }
 
+.panel {
+    display: grid;
+    place-items: center;
+    
+    width: 100vw;
+}
+
 .downloader {
     width: 45vw;
     margin: 15px 0;
@@ -122,4 +129,38 @@ span {
 
     cursor: pointer;
     background: #f0f0f0;
+}
+
+#share {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+#shareButton {
+    transition: .25s;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 10px;
+    background: #52A8F2;
+
+    width: 32px;
+    height: 32px;
+    margin: 0 15px;
+    padding: 10px;
+}
+
+#shareButton:hover {
+    transition: .25s;
+
+    cursor: pointer;
+    transform: translateY(-10px);
+    box-shadow: 5px 10px 15px rgba(0, 0, 0, .15);
+}
+
+#shareButton img {
+    width: 32px;
 }

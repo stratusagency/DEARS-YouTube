@@ -47,8 +47,8 @@ for (let element of document.getElementsByClassName('submit')) {
                 const thumbnail = document.createElement('img')
 
                 thumbnail.src = jsonFinal.thumbnail_url
-                thumbnail.width = jsonFinal.thumbnail_width / 2
-                thumbnail.height = jsonFinal.thumbnail_height / 2
+                thumbnail.width = jsonFinal.thumbnail_width / 2.5
+                thumbnail.height = jsonFinal.thumbnail_height / 2.5
 
                 const title = document.createElement('p')
                 const author = document.createElement('span')
@@ -64,6 +64,28 @@ for (let element of document.getElementsByClassName('submit')) {
             video.on('end', () => {
                 status.innerHTML = 'Downloaded 🎉'
                 shell.openPath(path)
+                
+                const twitter = document.createElement('div')
+                const facebook = document.createElement('div')
+
+                const twitterImage = document.createElement('img')
+                const facebookImage = document.createElement('img')
+
+                twitter.onclick = () => window.open('https://twitter.com/intent/tweet?ref_src=twsrc%5Etfw&url=YouTube%20Downloader%20https://bit.ly/33CFlue')
+                twitter.id = 'shareButton'
+
+                twitterImage.src = './assets/images/twitter.jpg'
+
+                facebook.onclick = () => window.open('https://www.facebook.com/sharer/sharer.php?u=https://bit.ly/33CFlue&amp;src=sdkpreparse')
+                facebook.id = 'shareButton'
+
+                facebookImage.src = './assets/images/facebook.jpg'
+
+                twitter.appendChild(twitterImage)
+                facebook.appendChild(facebookImage)
+
+                document.getElementById('share').appendChild(twitter)
+                document.getElementById('share').appendChild(facebook)
             })
             
             video.pipe(fs.createWriteStream(path))

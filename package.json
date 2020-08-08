@@ -1,6 +1,6 @@
 {
   "name": "dears",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "",
   "main": "index.js",
   "dependencies": {
@@ -17,7 +17,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
     "build": "electron-packager .",
-    "dmg": "electron-installer-dmg ./dears-darwin-x64/dears.app DEARS --icon=./assets/icon.icns --title=DEARS --background=./assets/background.png"
+    "dmg": "electron-installer-dmg ./dears-darwin-x64/dears.app DEARS --icon=./assets/icons/icon.icns --title=DEARS --background=./assets/images/background.png"
   },
   "author": "Corentin de Maupeou d'Ableiges de Monbail",
   "license": "ISC"
