@@ -1,4 +1,4 @@
-async function init () {
+function init () {    
     const { clipboard } = require('electron')
     
     const url = document.getElementById('url')
@@ -14,6 +14,7 @@ init()
 
 for (let element of document.getElementsByClassName('submit')) {
     element.onclick = async () => {
+        const logger = require('electron').remote.require('./logger')
         const { shell } = require('electron')
 
         const fs = require('fs')
@@ -25,6 +26,38 @@ for (let element of document.getElementsByClassName('submit')) {
 
         if (url.includes('youtube.com')) {
             status.innerHTML = 'Loading...'
+
+            let loading = true
+            let index = 0
+
+            setInterval(() => {
+                switch (index) {
+                    case 0:
+                        status.innerHTML = `${loading ? 'Load' : 'Download'}ing`
+                        index++
+                    break
+
+                    case 1:
+                        status.innerHTML = `${loading ? 'Load' : 'Download'}ing.`
+                        index++
+                    break
+
+                    case 2:
+                        status.innerHTML = `${loading ? 'Load' : 'Download'}ing..`
+                        index++
+                    break
+
+                    case 3:
+                        status.innerHTML = `${loading ? 'Load' : 'Download'}ing...`
+                        index = 0
+                    break
+
+                    case 4:
+                        status.innerHTML = 'Downloaded 🎉'
+                    break
+                }
+            }, 1000 * .25)
+
             suggestions.remove()
 
             // Download
@@ -36,7 +69,7 @@ for (let element of document.getElementsByClassName('submit')) {
             const video = youtubedl(url, ['--format=18'], { cwd: __dirname })
 
             video.on('info', async () => {
-                status.innerHTML = 'Downloading...'
+                loading = false
 
                 const div = document.getElementById('informations')
 
@@ -62,8 +95,8 @@ for (let element of document.getElementsByClassName('submit')) {
             })
 
             video.on('end', () => {
-                status.innerHTML = 'Downloaded 🎉'
                 shell.openPath(path)
+                index = 4
                 
                 const twitter = document.createElement('div')
                 const facebook = document.createElement('div')
